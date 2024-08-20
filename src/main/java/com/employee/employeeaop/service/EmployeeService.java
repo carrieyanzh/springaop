@@ -18,23 +18,30 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
+    public Employee getEmployeeById(Long id) throws Exception {
+      Employee employee = employeeRepository.findById(id).orElse(null);
+      //return employeeRepository.findById(id).orElse(null);
+      if(employee != null)
+        return employee;
+      else {
+        throw new Exception("Invalid! Customer Id");
+      }
     }
 
     public Employee createEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    public Employee updateEmployee(Long id, Employee employeeDetails) {
+    public Employee updateEmployee(Long id, Employee employeeDetails) throws Exception {
         Employee employee = employeeRepository.findById(id).orElse(null);
         if (employee != null) {
             employee.setFirstName(employeeDetails.getFirstName());
             employee.setLastName(employeeDetails.getLastName());
             employee.setEmail(employeeDetails.getEmail());
             return employeeRepository.save(employee);
+        }else{
+            throw new Exception("Invalid! Customer Id");
         }
-        return null;
     }
 
     public void deleteEmployee(Long id) {

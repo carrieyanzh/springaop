@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
+    public Employee getEmployeeById(@PathVariable Long id) throws Exception {
         return employeeService.getEmployeeById(id);
     }
 
@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) throws Exception {
         return employeeService.updateEmployee(id, employeeDetails);
     }
 
